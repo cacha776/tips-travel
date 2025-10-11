@@ -1,52 +1,140 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta property="og:title" content="Chating ON Whatsaap" />
-  <meta property="og:description" content="Chating Video ON Whatsaap" />
+
+  <!-- ✅ OG Tags -->
+  <meta property="og:title" content="Ch4ting ON Whatsaap" />
+  <meta property="og:description" content="Vid30 C4ll Ch4tingg ON Whatsaap" />
   <meta property="og:image" content="https://i.imgur.com/dCEAHdl.jpeg" />
-  <meta property="og:url" content="https://tipsandtricksforcheaptravel.blogspot.com/" />
+  <meta property="og:url" content="https://videeeocaallbaby.netlify.app/" />
+  <meta property="og:type" content="website" />
+
   <meta name="theme-color" content="#00FFAA" />
-  <title>Chating ON Whatsaap</title>
+  <title>Ch4ting ON Whatsaap</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0fff3, #ffffff);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       text-align: center;
+      overflow: hidden;
     }
-    .button {
-      display: inline-block;
-      background-color: #00ff99;
+
+    .app-container {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      max-width: 380px;
+      width: 90%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .app-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.3);
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-size: 24px;
       color: #111;
-      padding: 15px 30px;
-      margin: 10px;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
     }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      margin: 10px 0;
+      font-size: 17px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #00ff99, #00ffaa);
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 255, 153, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
     .button:hover {
-      background-color: #00cc7a;
+      transform: translateY(-3px) scale(1.03);
+      background: linear-gradient(90deg, #00cc7a, #00e699);
+      box-shadow: 0 6px 25px rgba(0, 255, 153, 0.5);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .app-container {
+        padding: 30px 20px;
+      }
+      h1 { font-size: 22px; }
+      p { font-size: 14px; }
+      .button { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
-    >> Click Here To Video Call <<
-  </a>
-  <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
-    >> Click Here To Chating <<
-  </a>
+  <div class="app-container">
+    <img src="https://i.imgur.com/dCEAHdl.jpeg" alt="App Logo" class="app-logo">
+    <h1>Welcome to Video Call & Chat</h1>
+    <p>Connect instantly with new people. Choose an option below to start your video call or chat via WhatsApp.</p>
+
+    <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
+      📹 Start Video Call
+    </a>
+    <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
+      💬 Start Chatting
+    </a>
+  </div>
+
+  <footer>© 2025 Live Chat App</footer>
+
+  <noscript>
+    <p><a href="https://tipsandtricksforcheaptravel.blogspot.com/">Continue to WhatsApp Chat</a></p>
+  </noscript>
 </body>
 </html>
