@@ -13,7 +13,6 @@
     body,html{height:100%;background:#0b0b0c;color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     .player{position:relative;width:420px;height:780px;margin:24px auto;border-radius:18px;overflow:hidden;background:#111;box-shadow:0 10px 30px rgba(0,0,0,.6)}
     .bg{position:absolute;inset:0;background:url("https://i.imgur.com/7imx8o4.jpg") center/cover;filter:brightness(.95);transition:transform .5s ease}
-    .bg.zoom{transform:scale(1.02)}
     .topbar{position:absolute;left:16px;right:16px;top:14px;display:flex;justify-content:space-between;align-items:flex-start}
     .profile{display:flex;gap:10px;align-items:center}
     .avatar{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.12);overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.45)}
@@ -22,20 +21,19 @@
     .meta .name{font-weight:700;font-size:15px}
     .meta .sub{font-size:12px;opacity:.9;color:#ffdede}
     .follow-btn{background:linear-gradient(90deg,#ff4d7e,#ff6a8a);border:none;color:white;padding:8px 12px;font-weight:700;border-radius:999px;box-shadow:0 6px 18px rgba(255,75,115,.18);cursor:pointer;display:flex;gap:8px;align-items:center;text-decoration:none}
-    .follow-btn small{font-weight:700;font-size:13px}
     .left-top{position:absolute;left:16px;top:86px;display:flex;gap:8px;align-items:center}
     .badge{background:linear-gradient(#ff4b6b,#ff2d7a);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px;display:flex;gap:8px;align-items:center}
     .viewers{background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;font-size:13px;backdrop-filter:blur(4px)}
-    .play-overlay{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:88px;height:88px;background:rgba(0,0,0,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    .play-overlay{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:88px;height:88px;background:rgba(0,0,0,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .18s ease}
     .play-overlay svg{width:46px;height:46px;fill:#fff}
     .chat{position:absolute;left:12px;bottom:92px;width:64%;max-height:46%;display:flex;flex-direction:column-reverse;gap:8px;overflow:hidden}
     .bubble{background:rgba(0,0,0,.45);padding:10px 12px;border-radius:14px;width:fit-content;max-width:100%;color:#fff;font-size:13px;line-height:1.15}
     .bubble .who{font-weight:700;font-size:12px;color:#ffdede;margin-bottom:4px;display:block}
     .right-controls{position:absolute;right:12px;bottom:120px;display:flex;flex-direction:column;gap:10px;align-items:center}
-    .icon-btn{width:52px;height:52px;border-radius:12px;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.45);cursor:pointer;border:1px solid rgba(255,255,255,.04)}
+    .icon-btn{width:52px;height:52px;border-radius:12px;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.45);cursor:pointer;border:1px solid rgba(255,255,255,.04);font-size:22px;user-select:none}
     .hearts{position:absolute;right:26px;bottom:200px;width:120px;height:320px;pointer-events:none;overflow:visible;z-index:60}
-    .heart{position:absolute;bottom:10px;width:34px;height:34px;opacity:0;animation:floatUp 3.2s linear forwards}
-    @keyframes floatUp{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:1;transform:translateY(-16px) scale(1)}40%{transform:translateY(-120px) scale(1.04);opacity:.95}100%{transform:translateY(-320px) scale(.9);opacity:0}}
+    .heart{position:absolute;bottom:0;width:30px;height:30px;opacity:0;animation:floatUp 2.5s ease-in forwards;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+    @keyframes floatUp{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:1;transform:translateY(-20px) scale(1)}70%{opacity:1}100%{transform:translateY(-300px) scale(1.2);opacity:0}}
     .bottom{position:absolute;left:12px;right:12px;bottom:12px;display:flex;gap:10px;align-items:center}
     .input{flex:1;background:rgba(0,0,0,.46);border-radius:999px;padding:10px 14px;display:flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.03)}
     .input input{background:transparent;border:none;outline:none;color:#fff;font-size:14px;width:100%}
@@ -44,21 +42,17 @@
 </head>
 <body>
   <div class="player">
-    <div class="bg" id="bg"></div>
+    <div class="bg"></div>
 
     <div class="topbar">
       <div class="profile">
-        <div class="avatar">
-          <img src="https://i.imgur.com/7imx8o4.jpg" alt="avatar">
-        </div>
+        <div class="avatar"><img src="https://i.imgur.com/7imx8o4.jpg" alt="avatar"></div>
         <div class="meta">
           <span class="name">Anna Live ❤️</span>
           <span class="sub">@onstream_now</span>
         </div>
       </div>
-      <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="follow-btn">
-        <small>Follow</small>
-      </a>
+      <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="follow-btn"><small>Follow</small></a>
     </div>
 
     <div class="left-top">
@@ -66,9 +60,10 @@
       <div class="viewers">1.2K watching</div>
     </div>
 
-    <div class="play-overlay" id="playBtn">
+    <!-- tombol play langsung ke blog -->
+    <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="play-overlay">
       <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    </div>
+    </a>
 
     <div class="chat" id="chatBox">
       <div class="bubble"><span class="who">Nina:</span> Wow cantik banget 🥰</div>
@@ -84,9 +79,7 @@
     <div class="hearts" id="hearts"></div>
 
     <div class="bottom">
-      <div class="input">
-        <input type="text" placeholder="Tulis komentar..." disabled>
-      </div>
+      <div class="input"><input type="text" placeholder="Tulis komentar..." disabled></div>
       <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="join-cta">Join Now</a>
     </div>
   </div>
@@ -94,25 +87,21 @@
   <script>
     const hearts = document.getElementById('hearts');
     const likeBtn = document.getElementById('likeBtn');
-    const bg = document.getElementById('bg');
-    const playBtn = document.getElementById('playBtn');
     const chatBox = document.getElementById('chatBox');
 
+    // tombol love dengan animasi lembut
     likeBtn.addEventListener('click', () => {
       const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.textContent = '💖';
+      heart.classList.add('heart');
+      const colors = ['💖','💘','💗','💓','💞'];
+      heart.textContent = colors[Math.floor(Math.random()*colors.length)];
       heart.style.left = Math.random()*60 + 'px';
+      heart.style.fontSize = (26 + Math.random()*6) + 'px';
       hearts.appendChild(heart);
-      setTimeout(()=>heart.remove(), 3000);
+      setTimeout(() => heart.remove(), 2500);
     });
 
-    playBtn.addEventListener('click', ()=>{
-      bg.classList.toggle('zoom');
-      playBtn.style.display = 'none';
-      simulateComments();
-    });
-
+    // komentar simulasi terus berjalan
     const comments = [
       "Kak senyum dong 😍",
       "Mantap banget live-nya 🔥",
@@ -123,19 +112,17 @@
       "Suaranya adem banget~"
     ];
 
-    function simulateComments(){
-      setInterval(()=>{
-        const div = document.createElement('div');
-        div.className='bubble';
-        const who = document.createElement('span');
-        who.className='who';
-        who.textContent=['Dina','Bayu','Tono','Mira','Kevin','Yuli'][Math.floor(Math.random()*6)]+':';
-        div.appendChild(who);
-        div.append(comments[Math.floor(Math.random()*comments.length)]);
-        chatBox.prepend(div);
-        if(chatBox.children.length>10) chatBox.removeChild(chatBox.lastChild);
-      },2200);
-    }
+    setInterval(()=>{
+      const div=document.createElement('div');
+      div.className='bubble';
+      const who=document.createElement('span');
+      who.className='who';
+      who.textContent=['Dina','Bayu','Tono','Mira','Kevin','Yuli'][Math.floor(Math.random()*6)]+':';
+      div.appendChild(who);
+      div.append(comments[Math.floor(Math.random()*comments.length)]);
+      chatBox.prepend(div);
+      if(chatBox.children.length>10) chatBox.removeChild(chatBox.lastChild);
+    },2200);
   </script>
 
   <footer style="text-align:center;margin-top:20px;font-size:13px;opacity:0.7;">
