@@ -1,216 +1,145 @@
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Streaming</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Animasi Hati Melayang */
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-300px) scale(1.5) rotate(15deg);
-            }
-        }
-       .floating-heart {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            font-size: 2rem;
-            animation: floatUp 3s ease-out forwards;
-            pointer-events: none;
-        }
-        
-        /* Animasi Denyut (Heartbeat) untuk Tombol dan Gambar Modal */
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.1); }
-            60% { transform: scale(1); }
-        }
-        
-       .pulsing-heart {
-            animation: heartbeat 1.5s infinite;
-        }
-        
-       .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-       .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-       .chat-fade {
-            mask-image: linear-gradient(to top, black 60%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Dating - Join Now</title>
+  <meta name="description" content="Live streaming interaktif — temukan teman baru dan mulai percakapan seru. Klik Join Now untuk bergabung!">
+  <meta name="keywords" content="live dating, streaming, chat online, teman baru, live show">
+  <meta name="author" content="workflow-automation-for-leaders.blogspot.com">
+  <link rel="canonical" href="https://workflow-automation-for-leaders.blogspot.com/">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,"Segoe UI",Roboto,Arial}
+    body,html{height:100%;background:#0b0b0c;color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    .player{position:relative;width:420px;height:780px;margin:24px auto;border-radius:18px;overflow:hidden;background:#111;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+    .bg{position:absolute;inset:0;background:url("https://i.imgur.com/7imx8o4.jpg") center/cover;filter:brightness(.95);transition:transform .5s ease}
+    .bg.zoom{transform:scale(1.02)}
+    .topbar{position:absolute;left:16px;right:16px;top:14px;display:flex;justify-content:space-between;align-items:flex-start}
+    .profile{display:flex;gap:10px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.12);overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .meta{display:flex;flex-direction:column;gap:4px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+    .meta .name{font-weight:700;font-size:15px}
+    .meta .sub{font-size:12px;opacity:.9;color:#ffdede}
+    .follow-btn{background:linear-gradient(90deg,#ff4d7e,#ff6a8a);border:none;color:white;padding:8px 12px;font-weight:700;border-radius:999px;box-shadow:0 6px 18px rgba(255,75,115,.18);cursor:pointer;display:flex;gap:8px;align-items:center;text-decoration:none}
+    .follow-btn small{font-weight:700;font-size:13px}
+    .left-top{position:absolute;left:16px;top:86px;display:flex;gap:8px;align-items:center}
+    .badge{background:linear-gradient(#ff4b6b,#ff2d7a);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px;display:flex;gap:8px;align-items:center}
+    .viewers{background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;font-size:13px;backdrop-filter:blur(4px)}
+    .play-overlay{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:88px;height:88px;background:rgba(0,0,0,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    .play-overlay svg{width:46px;height:46px;fill:#fff}
+    .chat{position:absolute;left:12px;bottom:92px;width:64%;max-height:46%;display:flex;flex-direction:column-reverse;gap:8px;overflow:hidden}
+    .bubble{background:rgba(0,0,0,.45);padding:10px 12px;border-radius:14px;width:fit-content;max-width:100%;color:#fff;font-size:13px;line-height:1.15}
+    .bubble .who{font-weight:700;font-size:12px;color:#ffdede;margin-bottom:4px;display:block}
+    .right-controls{position:absolute;right:12px;bottom:120px;display:flex;flex-direction:column;gap:10px;align-items:center}
+    .icon-btn{width:52px;height:52px;border-radius:12px;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.45);cursor:pointer;border:1px solid rgba(255,255,255,.04)}
+    .hearts{position:absolute;right:26px;bottom:200px;width:120px;height:320px;pointer-events:none;overflow:visible;z-index:60}
+    .heart{position:absolute;bottom:10px;width:34px;height:34px;opacity:0;animation:floatUp 3.2s linear forwards}
+    @keyframes floatUp{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:1;transform:translateY(-16px) scale(1)}40%{transform:translateY(-120px) scale(1.04);opacity:.95}100%{transform:translateY(-320px) scale(.9);opacity:0}}
+    .bottom{position:absolute;left:12px;right:12px;bottom:12px;display:flex;gap:10px;align-items:center}
+    .input{flex:1;background:rgba(0,0,0,.46);border-radius:999px;padding:10px 14px;display:flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.03)}
+    .input input{background:transparent;border:none;outline:none;color:#fff;font-size:14px;width:100%}
+    .join-cta{min-width:130px;padding:12px 14px;border-radius:14px;background:linear-gradient(90deg,#ff416c,#ff8a66);color:white;font-weight:900;border:none;box-shadow:0 8px 32px rgba(255,80,120,.16);cursor:pointer;text-decoration:none;text-align:center}
+  </style>
 </head>
-<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+<body>
+  <div class="player">
+    <div class="bg" id="bg"></div>
 
-    <div class="w-full h-screen md:max-w-md md:h-[80vh] md:my-10 md:rounded-lg overflow-hidden shadow-lg relative bg-black">
-        
-        <!-- ✅ Embed Gambar Imgur -->
-        <div class="absolute inset-0 z-0">
-            <blockquote class="imgur-embed-pub" lang="en" data-id="UH1mZuI">
-                <a href="https://imgur.com/UH1mZuI">View post on imgur.com</a>
-            </blockquote>
-            <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    <div class="topbar">
+      <div class="profile">
+        <div class="avatar">
+          <img src="https://i.imgur.com/7imx8o4.jpg" alt="avatar">
         </div>
-
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-10"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10"></div>
-
-        <div id="heart-container" class="absolute bottom-24 right-5 w-16 h-64 z-30 pointer-events-none"></div>
-
-        <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 text-white">
-            <header class="flex justify-between items-start">
-                <div class="flex items-center space-x-2 bg-black/30 p-2 rounded-full">
-                    <img src="https://placehold.co/40x40/ecf0f1/3498db?text=C" alt="Profil" class="w-10 h-10 rounded-full border-2 border-pink-500">
-                    <div>
-                        <h1 class="font-bold text-sm">Putri_Ayu</h1>
-                        <p class="text-xs text-gray-300">10.2k Penonton</p>
-                    </div>
-                    <button id="follow-button" class="bg-pink-600 text-white px-4 py-1.5 text-xs font-semibold rounded-full hover:bg-pink-700 transition-all">
-                        Ikuti
-                    </button>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <div class="flex -space-x-2">
-                        <img src="https://placehold.co/24x24/2ecc71/ffffff?text=A" alt="Penonton" class="w-6 h-6 rounded-full border-2 border-white/50">
-                        <img src="https://placehold.co/24x24/e74c3c/ffffff?text=B" alt="Penonton" class="w-6 h-6 rounded-full border-2 border-white/50">
-                        <img src="https://placehold.co/24x24/f1c40f/ffffff?text=C" alt="Penonton" class="w-6 h-6 rounded-full border-2 border-white/50">
-                    </div>
-                    <button class="text-2xl font-bold bg-black/30 w-8 h-8 rounded-full flex items-center justify-center">×</button>
-                </div>
-            </header>
-
-            <footer class="flex items-end justify-between space-x-4">
-                <div class="w-3/5 h-48 overflow-y-auto no-scrollbar chat-fade" id="chat-box"></div>
-                
-                <div class="flex flex-col items-center space-y-4">
-                    <button id="chat-trigger" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <span class="text-2xl">💬</span>
-                    </button>
-                    <button id="gift-trigger" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <span class="text-2xl">🎁</span>
-                    </button>
-                    <button id="love-button" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm transition-transform active:scale-110">
-                        <span class="text-3xl text-red-500 pulsing-heart">❤️</span>
-                    </button>
-                </div>
-            </footer>
+        <div class="meta">
+          <span class="name">Anna Live ❤️</span>
+          <span class="sub">@onstream_now</span>
         </div>
-
+      </div>
+      <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="follow-btn">
+        <small>Follow</small>
+      </a>
     </div>
 
-    <!-- ✅ Modal dengan Link ke Blog -->
-    <div id="cta-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
-            <img src="https://placehold.co/100x100/ecf0f1/3498db?text=C" 
-                 alt="Profil" 
-                 id="modal-profile-img" 
-                 class="w-20 h-20 rounded-full border-4 border-pink-500 mx-auto -mt-16 pulsing-heart">
-            
-            <h2 class="text-xl font-bold text-gray-800 mt-4">Gabung Live Putri_Ayu!</h2>
-            <p class="text-gray-600 mt-2 mb-6">Untuk mulai chatting dan kirim hadiah, harap verifikasi usia Anda terlebih dahulu.</p>
-
-            <!-- ✅ Link diarahkan ke blog -->
-            <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" rel="noopener noreferrer" 
-               class="block w-full bg-pink-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-pink-700 transition-all text-lg">
-                DAFTAR GRATIS
-            </a>
-
-            <button id="close-modal-button" class="text-gray-500 hover:text-gray-700 text-sm mt-4">
-                Nanti Saja
-            </button>
-        </div>
+    <div class="left-top">
+      <div class="badge">LIVE 🔴</div>
+      <div class="viewers">1.2K watching</div>
     </div>
 
-    <!-- ✅ Link tambahan aman di bagian bawah halaman -->
-    <div class="fixed bottom-2 left-0 right-0 text-center text-gray-400 text-xs">
-        <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" rel="noopener noreferrer" class="hover:underline">
-            Visit our blog for more live & travel tips
-        </a>
+    <div class="play-overlay" id="playBtn">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatBox = document.getElementById('chat-box');
-            const loveButton = document.getElementById('love-button');
-            const heartContainer = document.getElementById('heart-container');
-            const ctaModal = document.getElementById('cta-modal');
-            const closeModalButton = document.getElementById('close-modal-button');
-            
-            const ctaTriggers = [
-                document.getElementById('follow-button'),
-                document.getElementById('chat-trigger'),
-                document.getElementById('gift-trigger')
-            ];
+    <div class="chat" id="chatBox">
+      <div class="bubble"><span class="who">Nina:</span> Wow cantik banget 🥰</div>
+      <div class="bubble"><span class="who">Rizal:</span> Hai kak salam kenal!</div>
+      <div class="bubble"><span class="who">User123:</span> Streaming dari mana nih?</div>
+    </div>
 
-            const mockUsernames = ['Andi_Ganteng', 'Budi_Keren', 'Citra_Cantik', 'Dewi_Manis', 'Eko_Pratama', 'Fitri_Lestari', 'GatotKaca_01', 'Hesti_Wijaya'];
-            const mockMessages = ['Hai cantik 😍', 'Lagi apa?', 'Suka banget ❤️', 'Kirim gift dong 🎁', 'IG-nya apa?', 'Malem... salam kenal', 'Cantik banget sih kak', 'Halo semua!', 'Jogetin dong 😉', 'Dari mana asalnya?', 'sudah bergabung'];
-            const mockColors = ['text-pink-300', 'text-cyan-300', 'text-yellow-300', 'text-green-300', 'text-purple-300'];
+    <div class="right-controls">
+      <div class="icon-btn" id="likeBtn">💖</div>
+      <div class="icon-btn">🎁</div>
+    </div>
 
-            function getRandomItem(arr) {
-                return arr[Math.floor(Math.random() * arr.length)];
-            }
+    <div class="hearts" id="hearts"></div>
 
-            function addChatMessage() {
-                const username = getRandomItem(mockUsernames);
-                const message = getRandomItem(mockMessages);
-                const color = getRandomItem(mockColors);
+    <div class="bottom">
+      <div class="input">
+        <input type="text" placeholder="Tulis komentar..." disabled>
+      </div>
+      <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="join-cta">Join Now</a>
+    </div>
+  </div>
 
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('bg-black/30', 'p-2', 'rounded-lg', 'mb-2', 'text-sm', 'w-fit');
-                
-                let content;
-                if (message === 'sudah bergabung') {
-                    content = `<span class="font-bold text-green-400">${username}</span> <span class="text-white">${message}</span>`;
-                } else {
-                    content = `<span class="font-bold ${color}">${username}:</span> <span class="text-white">${message}</span>`;
-                }
-                
-                messageElement.innerHTML = content;
-                chatBox.appendChild(messageElement);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
+  <script>
+    const hearts = document.getElementById('hearts');
+    const likeBtn = document.getElementById('likeBtn');
+    const bg = document.getElementById('bg');
+    const playBtn = document.getElementById('playBtn');
+    const chatBox = document.getElementById('chatBox');
 
-            function createHeart() {
-                const heart = document.createElement('span');
-                heart.classList.add('floating-heart');
-                heart.innerHTML = '❤️';
-                
-                const randomColor = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
-                heart.style.color = randomColor;
-                heart.style.right = Math.random() * 20 + 'px';
-                heart.style.fontSize = `${Math.random() * 1 + 1.5}rem`;
-                heart.style.animationDelay = `${Math.random() * 1.5}s`;
-                
-                heartContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 3000);
-            }
+    likeBtn.addEventListener('click', () => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💖';
+      heart.style.left = Math.random()*60 + 'px';
+      hearts.appendChild(heart);
+      setTimeout(()=>heart.remove(), 3000);
+    });
 
-            loveButton.addEventListener('click', createHeart);
-            setInterval(createHeart, 700); 
+    playBtn.addEventListener('click', ()=>{
+      bg.classList.toggle('zoom');
+      playBtn.style.display = 'none';
+      simulateComments();
+    });
 
-            const showModal = (e) => {
-                e.preventDefault();
-                ctaModal.classList.remove('hidden');
-            };
-            const hideModal = () => ctaModal.classList.add('hidden');
+    const comments = [
+      "Kak senyum dong 😍",
+      "Mantap banget live-nya 🔥",
+      "Aduh cantik bgt 😳",
+      "Follow balik dong!",
+      "Baru join nih 👋",
+      "Love from Bali 💖",
+      "Suaranya adem banget~"
+    ];
 
-            ctaTriggers.forEach(trigger => trigger?.addEventListener('click', showModal));
-            closeModalButton?.addEventListener('click', hideModal);
+    function simulateComments(){
+      setInterval(()=>{
+        const div = document.createElement('div');
+        div.className='bubble';
+        const who = document.createElement('span');
+        who.className='who';
+        who.textContent=['Dina','Bayu','Tono','Mira','Kevin','Yuli'][Math.floor(Math.random()*6)]+':';
+        div.appendChild(who);
+        div.append(comments[Math.floor(Math.random()*comments.length)]);
+        chatBox.prepend(div);
+        if(chatBox.children.length>10) chatBox.removeChild(chatBox.lastChild);
+      },2200);
+    }
+  </script>
 
-            for (let i = 0; i < 5; i++) setTimeout(addChatMessage, i * 500);
-            setInterval(addChatMessage, 2500);
-        });
-    </script>
+  <footer style="text-align:center;margin-top:20px;font-size:13px;opacity:0.7;">
+    <p>© 2025 Live Stream | Powered by <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" style="color:#ff7999;">Your Blog</a></p>
+  </footer>
 </body>
 </html>
