@@ -1,136 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Streaming - Putri_Ayu</title>
+    <meta name="description" content="Live streamingin seru. Temukan keseruan obrolan langsung dan hadiah virtual.">
+    <meta name="author" content="Workflow Automation for Leaders Blog">
+    <link rel="canonical" href="https://workflow-automation-for-leaders.blogspot.com/">
+    <meta property="og:title" content="Live Streaming - Putri_Ayu">
+    <meta property="og:description" content="Streamingin seru.">
+    <meta property="og:url" content="https://workflow-automation-for-leaders.blogspot.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/600x800/9b59b6/ffffff?text=LIVE+STREAM">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- ✅ SEO & OG Meta Tags -->
-  <title>Video Chat & Call Connection</title>
-  <meta name="description" content="Enjoy private video calls and instant chat through our smooth connection platform. Start your call or chat safely and instantly!" />
-  <meta property="og:title" content="Video Chat & Call Connection" />
-  <meta property="og:description" content="Start your private video call or chat instantly. Connect easily and safely!" />
-  <meta property="og:image" content="https://i.imgur.com/2JPd4Pz.png" />
-  <meta property="og:url" content="https://videochatandcallconnection.netlify.app/" />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#00FFAA" />
-  <link rel="icon" href="https://i.imgur.com/2JPd4Pz.png" type="image/jpeg">
-
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', Arial, sans-serif;
-      background: linear-gradient(135deg, #e0fff3, #ffffff);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .app-container {
-      background: #fff;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 40px 30px;
-      max-width: 380px;
-      width: 90%;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .app-logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 20px rgba(0, 255, 153, 0.3);
-      margin-bottom: 20px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    h1 {
-      font-size: 24px;
-      color: #111;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #555;
-      margin-bottom: 25px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: 15px 0;
-      margin: 10px 0;
-      font-size: 17px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(90deg, #00ff99, #00ffaa);
-      border: none;
-      border-radius: 30px;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 255, 153, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .button:hover {
-      transform: translateY(-3px) scale(1.03);
-      background: linear-gradient(90deg, #00cc7a, #00e699);
-      box-shadow: 0 6px 25px rgba(0, 255, 153, 0.5);
-    }
-
-    footer {
-      position: absolute;
-      bottom: 15px;
-      font-size: 13px;
-      color: #777;
-    }
-
-    @media (max-width: 600px) {
-      .app-container { padding: 30px 20px; }
-      h1 { font-size: 22px; }
-      p { font-size: 14px; }
-      .button { font-size: 16px; }
-    }
-  </style>
+    <style>
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-300px) scale(1.5) rotate(15deg); }
+        }
+        .floating-heart {
+            position: absolute; bottom: 0; right: 0;
+            font-size: 2rem; animation: floatUp 3s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(1); }
+        }
+        .pulsing-heart { animation: heartbeat 1.5s infinite; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .chat-fade {
+            mask-image: linear-gradient(to top, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
+        }
+    </style>
 </head>
-<body>
-  <div class="app-container">
-    <img src="https://i.imgur.com/2JPd4Pz.png" alt="App Logo" class="app-logo">
-    <h1>Welcome to Video Chat Connection</h1>
-    <p>Connect instantly and start your private chat or video call. Choose an option below to begin.</p>
 
-    <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
-      📹 Start Video Call
-    </a>
-    <a class="button" href="https://tipsandtricksforcheaptravel.blogspot.com/" target="_blank">
-      💬 Start Chatting
-    </a>
-  </div>
+<body class="bg-gray-900 flex flex-col items-center justify-center min-h-screen">
 
-  <footer>© 2025 Chat Connection Platform</footer>
+    <div class="w-full h-screen md:max-w-md md:h-[80vh] md:my-10 md:rounded-lg overflow-hidden shadow-lg relative bg-black">
 
-  <noscript>
-    <p><a href="https://tipsandtricksforcheaptravel.blogspot.com/">Continue to Chat</a></p>
-  </noscript>
+        <!-- Player Utama -->
+        <img src="https://placehold.co/600x800/9b59b6/ffffff?text=LIVE+STREAM\n(Bayangkan+Model+Disini)" 
+             alt="Live Stream Model" 
+             class="absolute inset-0 w-full h-full object-cover z-0"
+             onerror="this.src='https://placehold.co/600x800/9b59b6/ffffff?text=Gambar+Gagal+Dimuat'">
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10"></div>
+
+        <div id="heart-container" class="absolute bottom-24 right-5 w-16 h-64 z-30 pointer-events-none"></div>
+
+        <div class="absolute inset-0 z-20 flex flex-col justify-between p-4 text-white">
+            <header class="flex justify-between items-start">
+                <div class="flex items-center space-x-2 bg-black/30 p-2 rounded-full">
+                    <img src="https://placehold.co/40x40/ecf0f1/3498db?text=C" alt="Profil" class="w-10 h-10 rounded-full border-2 border-pink-500">
+                    <div>
+                        <h1 class="font-bold text-sm">Putri_Ayu</h1>
+                        <p class="text-xs text-gray-300">10.2k Penonton</p>
+                    </div>
+                    <button id="follow-button" class="bg-pink-600 text-white px-4 py-1.5 text-xs font-semibold rounded-full hover:bg-pink-700 transition-all">
+                        Ikuti
+                    </button>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="flex -space-x-2">
+                        <img src="https://placehold.co/24x24/2ecc71/ffffff?text=A" class="w-6 h-6 rounded-full border-2 border-white/50">
+                        <img src="https://placehold.co/24x24/e74c3c/ffffff?text=B" class="w-6 h-6 rounded-full border-2 border-white/50">
+                        <img src="https://placehold.co/24x24/f1c40f/ffffff?text=C" class="w-6 h-6 rounded-full border-2 border-white/50">
+                    </div>
+                    <button class="text-2xl font-bold bg-black/30 w-8 h-8 rounded-full flex items-center justify-center">×</button>
+                </div>
+            </header>
+
+            <footer class="flex items-end justify-between space-x-4">
+                <div class="w-3/5 h-48 overflow-y-auto no-scrollbar chat-fade" id="chat-box"></div>
+                <div class="flex flex-col items-center space-y-4">
+                    <button id="chat-trigger" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"><span class="text-2xl">💬</span></button>
+                    <button id="gift-trigger" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"><span class="text-2xl">🎁</span></button>
+                    <button id="love-button" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm transition-transform active:scale-110">
+                        <span class="text-3xl text-red-500 pulsing-heart">❤️</span>
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 🎥 Embed Video Imgur -->
+    <div class="mt-6 w-full max-w-md text-center">
+        <blockquote class="imgur-embed-pub" lang="en" data-id="UH1mZuI">
+            <a href="https://imgur.com/UH1mZuI">View post on imgur.com</a>
+        </blockquote>
+        <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    </div>
+
+    <!-- 🔗 Footer Blog -->
+    <footer class="text-center mt-8 text-gray-300 text-sm">
+        <p>🌐 Kunjungi Blog Kami: 
+            <a href="https://workflow-automation-for-leaders.blogspot.com/" target="_blank" class="text-pink-400 hover:underline">
+                Workflow Automation for Leaders
+            </a>
+        </p>
+        <p class="mt-2">© 2025 LiveStream Project. Semua hak cipta dilindungi.</p>
+    </footer>
+
+    <!-- 🔒 Modal CTA -->
+    <div id="cta-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm text-center">
+            <img src="https://placehold.co/100x100/ecf0f1/3498db?text=C" 
+                 alt="Profil" 
+                 id="modal-profile-img" 
+                 class="w-20 h-20 rounded-full border-4 border-pink-500 mx-auto -mt-16 pulsing-heart">
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-4">Gabung Live Putri_Ayu!</h2>
+            <p class="text-gray-600 mt-2 mb-6">Untuk mulai chatting dan kirim hadiah, harap verifikasi usia Anda terlebih dahulu.</p>
+            <a href="https://videochatandcallconnection.netlify.app/" 
+               target="_blank" 
+               class="block w-full bg-pink-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-pink-700 transition-all text-lg">
+               DAFTAR GRATIS
+            </a>
+            <button id="close-modal-button" class="text-gray-500 hover:text-gray-700 text-sm mt-4">
+                Nanti Saja
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatBox = document.getElementById('chat-box');
+            const loveButton = document.getElementById('love-button');
+            const heartContainer = document.getElementById('heart-container');
+            const ctaModal = document.getElementById('cta-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const ctaTriggers = [
+                document.getElementById('follow-button'),
+                document.getElementById('chat-trigger'),
+                document.getElementById('gift-trigger')
+            ];
+
+            const mockUsernames = ['Andi_Ganteng', 'Budi_Keren', 'Citra_Cantik', 'Dewi_Manis', 'Eko_Pratama', 'Fitri_Lestari', 'GatotKaca_01', 'Hesti_Wijaya'];
+            const mockMessages = ['Hai cantik 😍', 'Lagi apa?', 'Suka banget ❤️', 'Kirim gift dong 🎁', 'IG-nya apa?', 'Malem... salam kenal', 'Cantik banget sih kak', 'Halo semua!', 'Jogetin dong 😉', 'Dari mana asalnya?', 'sudah bergabung'];
+            const mockColors = ['text-pink-300', 'text-cyan-300', 'text-yellow-300', 'text-green-300', 'text-purple-300'];
+
+            function getRandomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+            function addChatMessage() {
+                const username = getRandomItem(mockUsernames);
+                const message = getRandomItem(mockMessages);
+                const color = getRandomItem(mockColors);
+                const div = document.createElement('div');
+                div.classList.add('bg-black/30', 'p-2', 'rounded-lg', 'mb-2', 'text-sm', 'w-fit');
+                div.innerHTML = message === 'sudah bergabung'
+                    ? `<span class="font-bold text-green-400">${username}</span> <span class="text-white">${message}</span>`
+                    : `<span class="font-bold ${color}">${username}:</span> <span class="text-white">${message}</span>`;
+                chatBox.appendChild(div);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            function createHeart() {
+                const heart = document.createElement('span');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤️';
+                heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
+                heart.style.right = Math.random() * 20 + 'px';
+                heart.style.fontSize = `${Math.random() * 1 + 1.5}rem`;
+                heart.style.animationDelay = `${Math.random() * 1.5}s`;
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+
+            loveButton.addEventListener('click', createHeart);
+            setInterval(createHeart, 700);
+
+            const showModal = e => { e.preventDefault(); ctaModal.classList.remove('hidden'); };
+            const hideModal = () => ctaModal.classList.add('hidden');
+            ctaTriggers.forEach(t => t && t.addEventListener('click', showModal));
+            closeModalButton && closeModalButton.addEventListener('click', hideModal);
+
+            for (let i = 0; i < 5; i++) setTimeout(addChatMessage, i * 500);
+            setInterval(addChatMessage, 2500);
+        });
+    </script>
 </body>
 </html>
